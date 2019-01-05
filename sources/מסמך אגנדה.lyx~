@@ -1,0 +1,1038 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass heb-article
+\use_default_options true
+\maintain_unincluded_children false
+\language hebrew
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize 12
+\spacing onehalf
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 1.5cm
+\topmargin 1.5cm
+\rightmargin 1.5cm
+\bottommargin 1.5cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 2
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+פפסיום כלכלי: בלאק ושולס
+\end_layout
+
+\begin_layout Author
+רועי זהר
+\end_layout
+
+\begin_layout Abstract
+המודל של בלאק ושולס נחשב לאחת ההצלחות הגדולות ביותר של עולם הכלכלה במאה
+ שנים האחרונות.
+ עם זאת, המודל של בלאק ושולס מניח כמה הנחות יסוד, אשר לא תואמות את המציאות
+ כלל.
+ אחת מההנחות הללו, היא שהתנודתיות של המניות בשוק היא קבועה 
+\begin_inset Formula $(Volatility,\sigma)$
+\end_inset
+
+.
+ בחלק [
+\numeric on
+1
+\numeric off
+] אציג קודם כל את החלק הבסיסי של המטלה, שהוא מימוש של המודל הבסיסי לחיזוי
+ מניות, המניח תנודתיות קבועה.
+ לאחר מכן בחלק [
+\numeric on
+2
+\numeric off
+], אחשוף את הבעייתיות הרבה בהנחה שהתנודתיות קבועה, ואראה כיצד היא לא תואמת
+ את המציאות בצורה משמעותית.
+ לבסוף בחלק [
+\numeric on
+3
+\numeric off
+], אתאים מודל מסובך יותר לתנועת המניות בשם מודל 
+\begin_inset Formula $Heston$
+\end_inset
+
+, אשר מאפשר גם לתנודתיות של המניה להתנהג כמו תהליך אקראי, וממדל את התנועה
+ של המניה כתנועה בראונית מורכבת בשני מימדים.
+\end_layout
+
+\begin_layout Section
+חלק בסיסי
+\end_layout
+
+\begin_layout Subsection
+תנועה בראונית
+\end_layout
+
+\begin_layout Standard
+התחלנו חלק זה בסימולציות של תנועה בראונית חד מימדית.
+ התנועה סומלצה בצורה איטרטיבית, כך שבכל איטרציה נוסף רעש המתפלג בצורה נורמלית
+ למהירות, ומסיט את כיוון ההתקדמות של החלקיק.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename figures/1aa.png
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename figures/1ab.png
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+כפי שניתן לראות, בכל ריצה מתקבל מסלול חדש של חלקיק.
+ כאשר מיצעתי ריצות רבות, ראיתי שהמהירות הממוצעת, וההעתק הממוצע מתקרבים ל
+\numeric on
+0
+\numeric off
+.
+ כמו כן, ראיתי שבממוצע, החלקיק מתרחק בסדר גודל של 
+\begin_inset Formula $\sqrt{T}$
+\end_inset
+
+ מהנקודה 
+\begin_inset Formula $x=0$
+\end_inset
+
+, תכונה המאפיינת תנועה בראונית.
+\end_layout
+
+\begin_layout Subsection
+מניות בשוק ההון
+\end_layout
+
+\begin_layout Standard
+לאחר מכן, השלכנו את המודל של תנועה בראונית על מניה בשוק ההון, כאשר הרעש
+ נובע מהשפעות אקראית בשוק.
+ סימנו ב
+\begin_inset Formula $S$
+\end_inset
+
+ מחיר של מניה מסוימת, ותיארנו אותו בתור התהליך הסטוכסטי הבא:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+ & dS=f(t,S)dt\,+\,g(t,S)d\zeta\\
+ & g(t,S)=\sigma S\\
+ & f(t,S)=rS
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+לקחתי נתונים של מניית פייסבוק בשנת
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\numeric on
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+2016
+\numeric off
+, וחילצתי מתוכם את 
+\begin_inset Formula $r$
+\end_inset
+
+ ואת 
+\begin_inset Formula $\sigma$
+\end_inset
+
+ של אותה תקופה.
+ הערכים שיצאו לי היו 
+\begin_inset Formula $\sigma=0.0178\,r=0.00063$
+\end_inset
+
+.
+ מתוך הערכים הללו, חישבתי כמה מסלולים אקראיים בעזרת שיטת 
+\begin_inset Formula $Euler$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename figures/euler.png
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+לעיל אנו רואים שלושה חיזויים שונים של מניה, הצבועים בירוק כתום ואדום, וכנגדם
+ ערך המניה האמיתית הצבועה בכחול.
+ אמנם כל גרף שונה לחלוטין, עדיין ניתן לראות קשר צורתי בין המניה האמיתית
+ לחיזויים.
+ לאחר מכן סימלצתי את המניה בשיטה נוספת בשם 
+\begin_inset Formula $Milstein\,Scheme$
+\end_inset
+
+, אשר הניבה תוצאו דומות:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename figures/mils.png
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+שוב, אנו רואים תוצאות דומות לאלו בשיטות 
+\begin_inset Formula $Euler$
+\end_inset
+
+.
+ נשאלת השאלה - איזה מבין השיטות חוזה את תנועת המניה בצורה טובה יותר? לא
+ הגעתי לתשובה חד משמעית בעבודה שלי.
+ למרות ששיטת 
+\begin_inset Formula $Milstein$
+\end_inset
+
+ מוסיפה מימד נוסף של סיבוך, לא צפיתי בשינוי משמעותי בין שתי השיטות.
+ בדיקה שהרצתי היית לראות מי מהמודלים מתכנס מהר יותר אל ערך המניה האמיתי
+ לאחר שנה, עד כדי שגיאה של אחוז.
+ לאחר מאה סבבים כאלו, התוצאות היו:
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Formula $Milstein:37,Euler:33$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+שאלה מעניינת שאפשר לשאול היא מה יקרה אם נמצע המון חיזויים? נשים לב שאם 
+\begin_inset Formula $\sigma$
+\end_inset
+
+ היה שווה ל
+\numeric on
+0
+\numeric off
+, היינו מצפים לקבל קו לינארי חסר רעשים, ששיפועו הוא ריבית חסרת הסיכון 
+\begin_inset Formula $r$
+\end_inset
+
+.
+ נשים לב שזה מצב הגיוני מאוד, משום שאילו לא היו רעשים מסביב, סביר להניח
+ שכל המניות היו עולות בצורה בלתי תלויה לסביבתם.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename figures/avg.png
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+בגרף לעיל, אנו רואים את מניית פייסבוק בכחול, ובכתום ממוצע של
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\numeric on
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+1000
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\numeric off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+סימולציות בשיטת 
+\begin_inset Formula $Milstein$
+\end_inset
+
+.
+ ניתן לראות שהממוצע הזה העלים את רוב הרעשים של 
+\begin_inset Formula $\sigma$
+\end_inset
+
+, ונותרנו עם קו לינארי ששיפועו 
+\begin_inset Formula $r$
+\end_inset
+
+ כמצופה.
+\end_layout
+
+\begin_layout Subsection
+תמחור אופציות
+\end_layout
+
+\begin_layout Standard
+לבסוף, בדקנו האם הסימולציות שלנו תואמות את המודל של בלאק ושולס לתמחור מניות.
+ מצד אחד, מימשתי את המודל התיאורטי של בלאק ושולס, ומצד שני סימלצתי את המניה
+ ובדקתי מהם המחירים המקסימליים עבור אופציה מסוימת.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename figures/1a.png
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+בגרף לעיל אנו רואים את הערכת מחיר האופציה לפי מודל בלאק ושולס, לעומת הערכת
+ הסימולציות שלנו, כתלות בזמני פקיעה T שונים עבור מניית 
+\begin_inset Formula $Facebook$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename figures/1b.png
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+בגרף לעיל אנו רואים את הערכת מחיר האופציה לפי מודל בלאק ושולס, לעומת הערכת
+ הסימולציות שלנו, כתלות במחירי מימוש שונים K, עבור מניית 
+\begin_inset Formula $Facebook$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+ניתן לראות בגרפים לעיל, שהסימולציות שלנו תואמות את מדד בלאק ושולס לחלוטין,
+ ולמעשה מצאנו דרך להעריך את נוסחת בלאק ושולס בצורה נומרית על ידי סימולציות
+ של תנועה בראונית.
+\end_layout
+
+\begin_layout Section
+הנחות שגויות ו
+\begin_inset Formula $Volatility\,Smile$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+ראינו בחלק
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+[
+\numeric on
+1
+\numeric off
+]
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+דרך למדל תנועת מניה על ידי תנועה בראונית.
+ המודל מניח ריבית חסרת סיכון קבועה 
+\begin_inset Formula $r$
+\end_inset
+
+, ו
+\series bold
+תנודתיות קבועה
+\series default
+ 
+\begin_inset Formula $\sigma$
+\end_inset
+
+.
+ מטרתנו בחלק זה, תהיה לבדוק עד כמה המודל הזה תואם את המציאות.
+ נעשה זאת על ידי הערכה של הפרמטר 
+\begin_inset Formula $\sigma$
+\end_inset
+
+ מתוך מחירים אמיתיים בשוק, ונסיק מכאן כמה המודל שלנו תואם את המציאות.
+\end_layout
+
+\begin_layout Definition
+\begin_inset Formula $Implied\,Volatility$
+\end_inset
+
+ - התנודתיות הגלומה 
+\begin_inset Formula $\sigma$
+\end_inset
+
+, מוגדרת בתור התנודתיות שאופציה משרה על מניה מסויימת.
+\end_layout
+
+\begin_layout Standard
+בעזרת חישוב ה
+\begin_inset Formula $Implied\,Volatility$
+\end_inset
+
+ , נוכל להעריך את ה
+\begin_inset Formula $\sigma$
+\end_inset
+
+ הגלום בשוק.
+ נשאלת השאלה כיצד אפשר לחשב את ה
+\begin_inset Formula $Implied\,Volatility$
+\end_inset
+
+ של מניה מסוימת? נשים לב שנוסחת בלאק ושולס המסובכת, מסתכמת בתור:
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Formula $f(r,\sigma,K,T,S_{0})=C$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+האם ניתן לחלץ את 
+\begin_inset Formula $\sigma$
+\end_inset
+
+ מתוך כל הפרמטרים האחרים? ראינו בחלק [
+\numeric on
+1
+\numeric off
+] כמה מסובכת נוסחת בלאק ושולס, וחשוב לציין שזו אינה פונקציה הפיכה.
+ כלומר, לא נוכל למצוא 
+\begin_inset Formula $f^{-1}$
+\end_inset
+
+ אשר בהינתן כל שאר הפרמטרים תניב לנו את 
+\begin_inset Formula $\sigma$
+\end_inset
+
+.
+ למזלנו, במהלך הקורס פפסי למדנו שיטות נומריות מגוונות אשר יעזרו לנו לחלץ
+ את 
+\begin_inset Formula $\sigma$
+\end_inset
+
+.
+ משימתנו ניתן לתיאור באופן שקול, כמציאת נקודה 
+\begin_inset Formula $\sigma_{0}$
+\end_inset
+
+ אשר בה הפונקציה 
+\begin_inset Formula $g(\sigma)=f(r,\sigma,K,T,S_{0})-C$
+\end_inset
+
+ מתאפסת.
+ בשיעור
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\numeric on
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+7
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\numeric off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+לקורס, נחשפנו לשיטה הנומרת 
+\begin_inset Formula $Newton\,Raphson\,Method$
+\end_inset
+
+, אשר תתאים לצרכינו בדיוק.
+\end_layout
+
+\begin_layout Standard
+מחירי אופציות הם משאב יקר באינטרנט, אך הצלחתי לדוג מחירים של אופציות על
+ מדד 
+\begin_inset Formula $NIFTY$
+\end_inset
+
+, שהוא מדד המניות המרכזי בהודו.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename figures/smile3.png
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+הרצתי את האלגוריתם למציאת ה
+\begin_inset Formula $Implied\,Volatility$
+\end_inset
+
+ על מחירי המניות, וקיבלתי את התנודתיות הגלומות הבאות.
+ העקומות שאנו רואים כאן הן בשורה מדאיגה עבור מודל בלאק ושולס.
+ נסביר: נניח בשלילה שמניות בשוק מתנהגות עם 
+\begin_inset Formula $\sigma$
+\end_inset
+
+ קבועה.
+ אזי, מודל בלאק ושולס הוא נכון, והתהליך שעשינו אכן יחזיר את ה
+\begin_inset Formula $\sigma$
+\end_inset
+
+ של מניה שהיא קבועה.
+ והנה קיבלנו סתירה, משום שה
+\begin_inset Formula $\sigma$
+\end_inset
+
+ לנגד עינינו אינה קבועה בכלל ומשתנה כתלות במחיר המימוש 
+\begin_inset Formula $.K$
+\end_inset
+
+ כלומר, הראינו כאן שה
+\begin_inset Formula $\sigma$
+\end_inset
+
+ של מניות בשוק אינה קבועה, ולכן מודל בלאק ושולס לא יוכל למדל אותן בצורה
+ טובה מספיק.
+\end_layout
+
+\begin_layout Standard
+נדגים את הפספוס של מודל בלאק ושולס בצורה נוספת:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename figures/no_smile.png
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+להלן גרף של אותה תנודתיות גלומה, מסומלצת לפי מדד בלאק ושולס על מניית פייסבוק.
+ יש לשים לב לתנודתיות הקבועה המתקבלת, וכיצד המודל שלנו לא מסובך מספיק כדי
+ ליצור את אותה עקמומיות שראינו בטבע.
+ המסקנה הנובעת מהפרק הזה, היא שהמודל של בלאק ושולס לא מצליח לתאר את התהליכים
+ הטבעיים של השוק בצורה טובה מספיק.
+\end_layout
+
+\begin_layout Section
+מודל 
+\begin_inset Formula $Heston$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+לאחר שראינו בחלק הקודם את הבעייתיות בהנחה של מודל בלאק ושולס, ננסה להתאים
+ מודל סטוכסטי מסובך יותר לבעיה.
+ אם עד עכשיו התייחסנו רק למחיר המניה כתהליך סטוכסטי אקראי, כעת נבדוק מה
+ יקרה אם גם את 
+\series bold
+
+\begin_inset Formula $\sigma$
+\end_inset
+
+ נתאר כתהליך סטוכסטי אקראי.
+
+\series default
+ לתהליכים מהסוג הזה קוראים 
+\begin_inset Formula $Stochastical\,Volatility$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+אם נחזור לחלק הבסיסי [
+\numeric on
+1
+\numeric off
+], כעת אנו מדברים על תנועה בראונית דו מימדית, אשר בה גם המניה וגם התנודתיות
+ שלה מבצעים הילוך אקראי.
+ נקודה חשובה לגבי התנועה הזו, היא שאנו לא רוצים שהשינוי בתנודתיות ישתולל,
+ ולכן נוסיף לה אלמנט שגורם לה לחזור לערכה הממוצע.
+ ניתן לחשוב על תנועת התנודתיות בתור חלקיק המחובר לקפיץ: החלקיק נוטה להתרחק
+ מהמרכז בורה אקראית, אך עם הזמן הקפיץ מחזיר אותה לערכו הטבעי.
+ לתהליך כזה קוראים 
+\begin_inset Formula $Mean\,Reversion$
+\end_inset
+
+, חזרה אל הממוצע.
+\end_layout
+
+\begin_layout Standard
+אני בחרתי לממש בחלק זה את מודל 
+\begin_inset Formula $Heston$
+\end_inset
+
+, אשר מתאר בדיוק את התהליך הזה:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+ & dS_{t}=rS_{t}dt+\sqrt{v_{t}}S_{t}d\zeta_{1}\\
+ & dv_{t}=k(\theta-v_{t})dt+\eta\sqrt{v_{t}}d\zeta_{2}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+נשים לב שאין כמעט שינוי במחיר המניה S ביחס למודל הקודם, למעט העובדה שהחלפנו
+ את 
+\begin_inset Formula $\sigma$
+\end_inset
+
+ בתהליך אקראי 
+\begin_inset Formula $v_{t}$
+\end_inset
+
+.
+ אילו הייתי מציב ב
+\begin_inset Formula $v_{t}=\sigma^{2}$
+\end_inset
+
+, הייתי מקבל בחזרה את מודל בלאק ושולס.
+ להלן סימולציה של התנודתיות של המניה כפונקציה של הזמן.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename figures/volatility.png
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+נשים לב שקיבלנו בדיוק את התוצאה שרצינו: תנודתיות שאינה קבועה, אך 
+\begin_inset Quotes eld
+\end_inset
+
+מרחפת
+\begin_inset Quotes erd
+\end_inset
+
+ סביב אותה נקודה.
+ בכל פעם שהתנודתיות מתרחקת יותר מדי מהממוצע שלה, היא נאלצת לחזור חזרה.
+\end_layout
+
+\begin_layout Standard
+אציין במשפט שלמודל 
+\begin_inset Formula $Heston$
+\end_inset
+
+ יש פרמטרים רבים, כשלכל אחד מהם יש חשיבות רבה: 
+\begin_inset Formula $\theta$
+\end_inset
+
+ מציין את הערך הממוצע של התנודתיות, 
+\begin_inset Formula $k$
+\end_inset
+
+ מציין כמה מהר התנודתיות חוזרת אל הממוצע לאחר שהתרחקה, ו
+\begin_inset Formula $\eta$
+\end_inset
+
+ מציין כמה התנודתיות יכולה לנוע.
+ לדוגמא, בדקתי מקרה קצה בו הגדלתי את 
+\begin_inset Formula $\eta$
+\end_inset
+
+ פי
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\numeric on
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+10
+\numeric off
+, וקיבלתי את התנועה האקראית הבאה עבור התנודתיות:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename figures/huge_vol.png
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+שהיא אכן גורמת לתנודתיות להיות הרבה יותר תנודתית.
+ כעת, נריץ סימולציה של מחיר המניה כתלות בזמן, ונראה את התנהגותה:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename figures/heston2.png
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+נשים לב שמודל 
+\begin_inset Formula $Heston$
+\end_inset
+
+ מניב תוצאות אשר נראות בעין כמו אלו של המודל הקודם בשיטות 
+\begin_inset Formula $Euler$
+\end_inset
+
+ ו
+\begin_inset Formula $Milstein$
+\end_inset
+
+.
+ זוהי בדיקה חשובה, אך יותר חשובה לבדוק האם הוא בעל מספיק דרגות חופש כדי
+ ליצור את אותו החיוך שראינו בפרק הקודם? כלומר, האם הסיבוכיות שהוספנו אכן
+ שיפרה את התאמת המודל למציאות? חישבתי את ה
+\begin_inset Formula $Implied\,Volatility$
+\end_inset
+
+ גם במודל החדש עבור אותה מניית פייסבוק, וקיבלתי את התוצאה הבאה:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename figures/smile_hest_awesome.png
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+כעת ניתן לראות תהליך שהרבה יותר תואם למציאות )כפי שראינו במדד 
+\begin_inset Formula $NIFTY$
+\end_inset
+
+(.
+ מודל 
+\begin_inset Formula $Heston$
+\end_inset
+
+ הצליח לייצר את החיוך שצפינו במציאות, וזאת מכיוון שלא הניח תנודתיות קבועה.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename figures/yasss.png
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+התופעה האחרונה שרציתי לדון בה היא התופעה הבאה, בה אנו רואים את ה
+\begin_inset Formula $Volatility\,Smile$
+\end_inset
+
+ הולך ונהיה צר יותר ככל שזמן פקיעת המניה מתקרב.
+ תופעה זו הינה תופעה מוכרת בתחום הפיננסי, וגם היא נחקרת רבות.
+\end_layout
+
+\begin_layout Section*
+סיכום
+\end_layout
+
+\begin_layout Standard
+אסכם בקצרה את מה שראינו.
+ תחילה, הצגתי את מודל בלאק ושולס, וכיצד אפשר להגיע אל נוסחת בלאק ושולס גם
+ מתוך סימולציות וגם בצורה תיאורטית.
+ לאחר מכן, הדגמתי את אחת הבעיות המרכזית במודל, שהיא ההנחה של תנודתיות קבועה.
+ הראיתי כיצד המודל לא מסובך מספיק כדי ליצור את תופעת ה
+\begin_inset Formula $Volatility\,Smile$
+\end_inset
+
+, שהיא תופעה מוכרת בשוק שאנו מנסים למדל.
+ לבסוף, הצעתי ומימשתי מודל חדש, מסובך יותר, בשם 
+\begin_inset Formula $Heston$
+\end_inset
+
+, שהוא מניח שגם התנודתיות של מניה מתנהגת כתהליך אקראי.
+ ראינו שמודל זה מסובך מספיק כדי ליצור את תופעת ה
+\begin_inset Formula $Volatility\,Smile$
+\end_inset
+
+, והסקנו שהוא מתאר את השוק הפיננסי בצורה טובה יותר.
+\end_layout
+
+\end_body
+\end_document
